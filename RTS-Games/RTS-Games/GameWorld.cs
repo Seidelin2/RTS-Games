@@ -34,9 +34,9 @@ namespace RTS_Games
         {
             graphics = new GraphicsDeviceManager(this);
 
-			graphics.PreferredBackBufferWidth = 1920;
-			graphics.PreferredBackBufferHeight = 1080;
-			screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
+            screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
 			Content.RootDirectory = "Content";
         }
@@ -51,6 +51,7 @@ namespace RTS_Games
         {
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
+            this.IsMouseVisible = true;
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
