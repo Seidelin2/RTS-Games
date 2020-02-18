@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/medievalBarn.png
 
+#begin Sprites/Buildings/medievalBarn_Outline.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Buildings/medievalBarn_Outline.png
+
 #begin Sprites/Buildings/medievalCastle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/medievalCastle.png
 
-#begin Sprites/Buildings/medievalCastle_B.png
+#begin Sprites/Buildings/medievalCastle_Outline.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,19 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Buildings/medievalCastle_B.png
-
-#begin Sprites/Buildings/medievalCastle_T.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Buildings/medievalCastle_T.png
+/build:Sprites/Buildings/medievalCastle_Outline.png
 
 #begin Sprites/Buildings/medievalHome_a.png
 /importer:TextureImporter
@@ -109,6 +109,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/medievalHome_c.png
 
+#begin Sprites/Buildings/medievalHome_Outline.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Buildings/medievalHome_Outline.png
+
 #begin Sprites/Buildings/medievalLogStorage.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -120,6 +132,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/medievalLogStorage.png
+
+#begin Sprites/Buildings/medievalLogStorage_Outline.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Buildings/medievalLogStorage_Outline.png
 
 #begin Sprites/Buildings/medievalMineralStorage.png
 /importer:TextureImporter
