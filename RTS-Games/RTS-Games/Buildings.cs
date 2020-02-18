@@ -10,27 +10,25 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RTS_Games
 {
-	class Guild : GameObject
+	class Buildings : GameObject
 	{
-		public string guildName;
-		public Guild(string guild, Vector2 position, float layer)
+		public string buildingName;
+		public Buildings(string building, Vector2 position, float layer)
 		{
-			guildName = guild;
+			buildingName = building;
 			this.position = position;
 			layerDepth = layer;
 		}
 
 		public override void LoadContent(ContentManager content)
 		{
-			sprite = content.Load<Texture2D>($"Sprites/Buildings/{guildName}");
+			sprite = content.Load<Texture2D>($"Sprites/Buildings/{buildingName}");
 
 			origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 		}
 
 		public override void Update(GameTime update)
 		{
-			CheckAddStroke();
-
 			base.Update(update);
 		}
 
@@ -42,18 +40,6 @@ namespace RTS_Games
 		public override void OnCollision(GameObject other)
 		{
 
-		}
-
-		private void CheckAddStroke()
-		{
-			//Gets the mouse's state
-			MouseState mouseState = Mouse.GetState();
-
-			//If the position of the mouse is hovering over the Guild, instantiate a strokeSprite
-			if(CollisionBox.Contains(mouseState.Position))
-			{
-				GameWorld.Instantiate(new StrokeSprite(sprite, CollisionBox, position, origin));
-			}
 		}
 	}
 }

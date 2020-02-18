@@ -16,6 +16,7 @@ namespace RTS_Games
 
 		private static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
+		private static List<GameObject> destroyObject = new List<GameObject>();
 
 		//Position
 		Vector2 position;
@@ -55,12 +56,21 @@ namespace RTS_Games
 
 			Console.WriteLine("Sprite");
 
-			Guild guild = new Guild("medievalCastle", new Vector2(800, 400), 0.1f);
+			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 400), 0.1f);
 			gameObjects.Add(guild);
+
+			Buildings mine = new Buildings("medievalHome_b", new Vector2(224, 88), 0.1f);
+			gameObjects.Add(mine);
+
+			Buildings logHouse = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.1f);
+			gameObjects.Add(logHouse);
+
+			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.1f);
+			gameObjects.Add(barn);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
-			gameObjects.Add(background);
+			//gameObjects.Add(background);
 
             base.Initialize();
         }
@@ -81,7 +91,7 @@ namespace RTS_Games
 			}
 
 			//Collision Texture for sprites
-			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionExample");
+			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionTexture");
         }
 
         /// <summary>
@@ -163,6 +173,33 @@ namespace RTS_Games
 		{
 			gameObjects.AddRange(newObjects);
 			newObjects.Clear();
+		}
+
+		//Fjerner vores sprite ved at gå ned til CallDestory()
+		public static void Destroy(GameObject go)
+		{
+			destroyObject.Add(go);
+		}
+
+		private void CallDestory()
+		{
+			//Ny list tmp
+			List<GameObject> tmp = new List<GameObject>();
+
+			//tmp er vores gameObjects
+			tmp = gameObjects;
+
+			//For enhver GameObject i destroyObject skal der fjernes en objekt
+			foreach (GameObject go in destroyObject)
+			{
+				tmp.Remove(go);
+			}
+
+			//destroyObject er vores nye List
+			destroyObject = new List<GameObject>();
+
+			//Listen er vores tmp
+			gameObjects = tmp;
 		}
 
 		//Udtegner Collsion rundt om vores Sprites
