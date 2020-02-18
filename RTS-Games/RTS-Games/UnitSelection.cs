@@ -10,8 +10,10 @@ namespace RTS_Games
 {
     public class UnitSelection
     {
+        //List for currently selected workers
         List<Workers> currentlySelectedWorker = new List<Workers>();
 
+        //Update method we call over in game world
         public void Update()
         {
             SelectedWorker();
@@ -19,7 +21,7 @@ namespace RTS_Games
 
         public void SelectedWorker()
         {
-
+            //Left click to select a worker
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 currentlySelectedWorker.Clear();
@@ -47,6 +49,8 @@ namespace RTS_Games
 
         public void MoveSelectedWorker()
         {
+            //When a Worker is selected 
+            //Press Right Click to move it to the mouse position
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
 
@@ -60,6 +64,7 @@ namespace RTS_Games
                 foreach (Workers workwork in currentlySelectedWorker)
                 {
                     //workwork.move(newPosition)
+                    Console.WriteLine($"Moving Worker to mouse position {0}", workwork);
                 }
             }
         }

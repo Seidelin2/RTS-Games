@@ -172,6 +172,33 @@ namespace RTS_Games
 			newObjects.Clear();
 		}
 
+		//Fjerner vores sprite ved at gå ned til CallDestory()
+		public static void Destroy(GameObject go)
+		{
+			destroyObject.Add(go);
+		}
+
+		private void CallDestory()
+		{
+			//Ny list tmp
+			List<GameObject> tmp = new List<GameObject>();
+
+			//tmp er vores gameObjects
+			tmp = gameObjects;
+
+			//For enhver GameObject i destroyObject skal der fjernes en objekt
+			foreach (GameObject go in destroyObject)
+			{
+				tmp.Remove(go);
+			}
+
+			//destroyObject er vores nye List
+			destroyObject = new List<GameObject>();
+
+			//Listen er vores tmp
+			gameObjects = tmp;
+		}
+
 		//Udtegner Collsion rundt om vores Sprites
 		private void DrawCollisionBox(GameObject go)
 		{
