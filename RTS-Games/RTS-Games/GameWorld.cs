@@ -19,8 +19,6 @@ namespace RTS_Games
 		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
 
-		
-
 		//Position
 		Vector2 position;
 
