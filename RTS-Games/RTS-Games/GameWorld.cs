@@ -14,7 +14,7 @@ namespace RTS_Games
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-		private List<GameObject> gameObjects = new List<GameObject>();
+		private static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
 
 		//Position
@@ -52,6 +52,11 @@ namespace RTS_Games
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
             this.IsMouseVisible = true;
+
+			Console.WriteLine("Sprite");
+
+			Guild guild = new Guild("medievalCastle", new Vector2(800, 400), 0.1f);
+			gameObjects.Add(guild);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
@@ -99,13 +104,7 @@ namespace RTS_Games
                 Exit();
 
 			// TODO: Add your update logic here
-			//Viser musens koordinat position i DEBUG mode
-			MouseState state = Mouse.GetState();
-
-			position.X = state.X;
-			position.Y = state.Y;
-
-			Console.WriteLine(position.X.ToString() + "," + position.Y.ToString());
+			InstantiateCall();
 
 			//
 			foreach (GameObject gO in gameObjects)
@@ -117,6 +116,14 @@ namespace RTS_Games
 					gO.CheckCollision(other);
 				}
 			}
+
+			//Viser musens koordinat position i DEBUG mode
+			MouseState state = Mouse.GetState();
+
+			position.X = state.X;
+			position.Y = state.Y;
+
+			Console.WriteLine(position.X.ToString() + ", " + position.Y.ToString());
 
 			base.Update(gameTime);
         }
@@ -150,6 +157,12 @@ namespace RTS_Games
 		public static void Instantiate(GameObject go)
 		{
 			newObjects.Add(go);
+		}
+
+		public static void InstantiateCall()
+		{
+			gameObjects.AddRange(newObjects);
+			newObjects.Clear();
 		}
 
 		//Udtegner Collsion rundt om vores Sprites

@@ -9,8 +9,7 @@ namespace RTS_Games
 	{
 		//Texture, størrelse, dybde og effekter for Sprite
 		protected Texture2D sprite;
-		protected int spriteHeight;
-		protected int spriteWidth;
+		protected Rectangle spriteRectangle;
 		protected float layerDepth = 1;
 		protected int size = 1;
 		protected SpriteEffects spriteEffect = SpriteEffects.None;
@@ -27,8 +26,7 @@ namespace RTS_Games
 
 		public virtual void LoadContent(ContentManager content)
 		{
-			spriteWidth = sprite.Width;
-			spriteHeight = sprite.Height;
+
 		}
 
 		public virtual void Update(GameTime update)
@@ -36,7 +34,10 @@ namespace RTS_Games
 
 		}
 
-		public abstract void Draw(SpriteBatch spriteBatch);
+		public virtual void Draw(SpriteBatch spriteBatch)
+		{
+			spriteBatch.Draw(sprite, position, spriteRectangle, Color.White, 0, origin, size, spriteEffect, layerDepth);
+		}
 
 		public virtual void Move(GameTime gameTime)
 		{
@@ -47,7 +48,8 @@ namespace RTS_Games
 
 		public virtual Rectangle CollisionBox
 		{
-			get { return new Rectangle((int)position.X - (int)origin.X, (int)position.Y - (int)origin.Y, spriteWidth, spriteHeight); }
+			get { return new Rectangle((int)position.X - (int)origin.X, (int)position.Y - (int)origin.Y, sprite.Width, sprite.Height); }
+			
 		}
 
 		public abstract void OnCollision(GameObject other);
