@@ -18,10 +18,7 @@ namespace RTS_Games
             Content.RootDirectory = "Content";
         }
 
-        public void Hello()
-        {
-
-        }
+        
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
