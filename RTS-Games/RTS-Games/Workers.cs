@@ -13,11 +13,6 @@ namespace RTS_Games
     class Workers : GameObject
     {
         string workerName;
-        Rectangle workerRectangle;
-
-
-        bool isHovered = false;
-        bool isClicked = false;
 
 
         public Workers(string worker, Vector2 position, float layer)
