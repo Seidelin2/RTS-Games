@@ -38,7 +38,7 @@ namespace RTS_Games
                         if (mouseRectangle.Intersects((x as Workers).CollisionBox))
                         {
                             currentlySelectedWorker.Add(x as Workers);
-                            Console.WriteLine("Hello there Mr Kanobi");
+                            //Console.WriteLine("Hello there Mr Kanobi");
                         }
                     }
                 }

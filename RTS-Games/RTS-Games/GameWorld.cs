@@ -15,6 +15,7 @@ namespace RTS_Games
         SpriteBatch spriteBatch;
 
 		UnitSelection unitSelection = new UnitSelection();
+		BuildingSelection buildingSelection = new BuildingSelection();
 
 		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
@@ -54,12 +55,18 @@ namespace RTS_Games
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
             this.IsMouseVisible = true;
+
+			//
+			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 402), 0.05f);
+			gameObjects.Add(guild);
+
 			//Tilføjer vores workerunit med filens navn, position og laget dybde
 			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
+			gameObjects.Add(worker);
+
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);
-			gameObjects.Add(worker);
 
             base.Initialize();
         }
@@ -104,6 +111,7 @@ namespace RTS_Games
 
 			// TODO: Add your update logic here
 			unitSelection.Update();
+			buildingSelection.Update();
 
 			//Viser musens koordinat position i DEBUG mode
 			MouseState state = Mouse.GetState();
@@ -123,10 +131,6 @@ namespace RTS_Games
 					gO.CheckCollision(other);
 				}
 			}
-
-			//Viser musens koordinat position i DEBUG mode
-			MouseState state = Mouse.GetState();
-
 
 			base.Update(gameTime);
         }
@@ -166,33 +170,6 @@ namespace RTS_Games
 		{
 			gameObjects.AddRange(newObjects);
 			newObjects.Clear();
-		}
-
-		//Fjerner vores sprite ved at gå ned til CallDestory()
-		public static void Destroy(GameObject go)
-		{
-			destroyObject.Add(go);
-		}
-
-		private void CallDestory()
-		{
-			//Ny list tmp
-			List<GameObject> tmp = new List<GameObject>();
-
-			//tmp er vores gameObjects
-			tmp = gameObjects;
-
-			//For enhver GameObject i destroyObject skal der fjernes en objekt
-			foreach (GameObject go in destroyObject)
-			{
-				tmp.Remove(go);
-			}
-
-			//destroyObject er vores nye List
-			destroyObject = new List<GameObject>();
-
-			//Listen er vores tmp
-			gameObjects = tmp;
 		}
 
 		//Udtegner Collsion rundt om vores Sprites

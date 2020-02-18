@@ -27,11 +27,6 @@ namespace RTS_Games
 			origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 		}
 
-		public override void Update(GameTime update)
-		{
-			base.Update(update);
-		}
-
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.Draw(sprite, position, null, Color.White, 0, origin, size, SpriteEffects.None, 0.1f);
