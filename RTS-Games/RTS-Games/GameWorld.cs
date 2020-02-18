@@ -125,7 +125,7 @@ namespace RTS_Games
 			}
 
 			//Viser musens koordinat position i DEBUG mode
-			MouseState state = Mouse.GetState();
+
 
 
 			base.Update(gameTime);
@@ -171,7 +171,7 @@ namespace RTS_Games
 		//Fjerner vores sprite ved at gå ned til CallDestory()
 		public static void Destroy(GameObject go)
 		{
-			destroyObject.Add(go);
+			//destroyObject.Add(go);
 		}
 
 		private void CallDestory()
@@ -183,13 +183,13 @@ namespace RTS_Games
 			tmp = gameObjects;
 
 			//For enhver GameObject i destroyObject skal der fjernes en objekt
-			foreach (GameObject go in destroyObject)
-			{
-				tmp.Remove(go);
-			}
+			//foreach (GameObject go in destroyObject)
+			//{
+			//	tmp.Remove(go);
+			//}
 
 			//destroyObject er vores nye List
-			destroyObject = new List<GameObject>();
+			//destroyObject = new List<GameObject>();
 
 			//Listen er vores tmp
 			gameObjects = tmp;
