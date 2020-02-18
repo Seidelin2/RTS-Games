@@ -19,8 +19,6 @@ namespace RTS_Games
 		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
 
-		
-
 		//Position
 		Vector2 position;
 
@@ -82,7 +80,7 @@ namespace RTS_Games
 			}
 
 			//Collision Texture for sprites
-			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionExample");
+			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionTexture");
         }
 
         /// <summary>
@@ -126,6 +124,9 @@ namespace RTS_Games
 				}
 			}
 
+			//Viser musens koordinat position i DEBUG mode
+			MouseState state = Mouse.GetState();
+
 
 			base.Update(gameTime);
         }
@@ -159,6 +160,39 @@ namespace RTS_Games
 		public static void Instantiate(GameObject go)
 		{
 			newObjects.Add(go);
+		}
+
+		public static void InstantiateCall()
+		{
+			gameObjects.AddRange(newObjects);
+			newObjects.Clear();
+		}
+
+		//Fjerner vores sprite ved at gå ned til CallDestory()
+		public static void Destroy(GameObject go)
+		{
+			destroyObject.Add(go);
+		}
+
+		private void CallDestory()
+		{
+			//Ny list tmp
+			List<GameObject> tmp = new List<GameObject>();
+
+			//tmp er vores gameObjects
+			tmp = gameObjects;
+
+			//For enhver GameObject i destroyObject skal der fjernes en objekt
+			foreach (GameObject go in destroyObject)
+			{
+				tmp.Remove(go);
+			}
+
+			//destroyObject er vores nye List
+			destroyObject = new List<GameObject>();
+
+			//Listen er vores tmp
+			gameObjects = tmp;
 		}
 
 		//Udtegner Collsion rundt om vores Sprites

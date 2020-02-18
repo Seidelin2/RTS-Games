@@ -6,34 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace RTS_Games
 {
-	class Background : GameObject
+	class Buildings : GameObject
 	{
-		private string backgroundName;
-
-		public Background(string background, Vector2 position, float layer)
+		public string buildingName;
+		public Buildings(string building, Vector2 position, float layer)
 		{
-			backgroundName = background;
+			buildingName = building;
 			this.position = position;
 			layerDepth = layer;
 		}
 
 		public override void LoadContent(ContentManager content)
 		{
-			layerDepth = 0.05f;
-
-			//Baggrunden findes med en string
-			sprite = content.Load<Texture2D>($"Sprites/Background/{backgroundName}");
+			sprite = content.Load<Texture2D>($"Sprites/Buildings/{buildingName}");
 
 			origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 		}
 
+		public override void Update(GameTime update)
+		{
+			base.Update(update);
+		}
+
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			//Tegner vores baggrund ud kun en gang
-			spriteBatch.Draw(sprite, position, null, Color.White, 0, origin, size, spriteEffect, layerDepth);
+			spriteBatch.Draw(sprite, position, null, Color.White, 0, origin, size, SpriteEffects.None, 0.1f);
 		}
 
 		public override void OnCollision(GameObject other)
