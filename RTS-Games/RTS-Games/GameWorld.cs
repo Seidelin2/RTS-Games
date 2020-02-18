@@ -14,9 +14,12 @@ namespace RTS_Games
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-		private static List<GameObject> gameObjects = new List<GameObject>();
+		UnitSelection unitSelection = new UnitSelection();
+
+		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
-		private static List<GameObject> destroyObject = new List<GameObject>();
+
+		
 
 		//Position
 		Vector2 position;
@@ -53,24 +56,12 @@ namespace RTS_Games
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
             this.IsMouseVisible = true;
-
-			Console.WriteLine("Sprite");
-
-			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 400), 0.1f);
-			gameObjects.Add(guild);
-
-			Buildings mine = new Buildings("medievalHome_b", new Vector2(224, 88), 0.1f);
-			gameObjects.Add(mine);
-
-			Buildings logHouse = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.1f);
-			gameObjects.Add(logHouse);
-
-			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.1f);
-			gameObjects.Add(barn);
-
+			//Tilføjer vores workerunit med filens navn, position og laget dybde
+			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
-			//gameObjects.Add(background);
+			gameObjects.Add(background);
+			gameObjects.Add(worker);
 
             base.Initialize();
         }
@@ -114,9 +105,17 @@ namespace RTS_Games
                 Exit();
 
 			// TODO: Add your update logic here
-			InstantiateCall();
+			unitSelection.Update();
 
-			//
+			//Viser musens koordinat position i DEBUG mode
+			MouseState state = Mouse.GetState();
+
+
+			position.X = state.X;
+			position.Y = state.Y;
+			//Console.WriteLine(position.X.ToString() + "," + position.Y.ToString());
+
+			//Collision Check in GameObjects
 			foreach (GameObject gO in gameObjects)
 			{
 				gO.Update(gameTime);
@@ -130,10 +129,6 @@ namespace RTS_Games
 			//Viser musens koordinat position i DEBUG mode
 			MouseState state = Mouse.GetState();
 
-			position.X = state.X;
-			position.Y = state.Y;
-
-			Console.WriteLine(position.X.ToString() + ", " + position.Y.ToString());
 
 			base.Update(gameTime);
         }
