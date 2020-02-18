@@ -52,10 +52,12 @@ namespace RTS_Games
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
             this.IsMouseVisible = true;
-
+			//Tilføjer vores workerunit med filens navn, position og laget dybde
+			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);
+			gameObjects.Add(worker);
 
             base.Initialize();
         }
@@ -105,7 +107,7 @@ namespace RTS_Games
 			position.X = state.X;
 			position.Y = state.Y;
 
-			Console.WriteLine(position.X.ToString() + "," + position.Y.ToString());
+			//Console.WriteLine(position.X.ToString() + "," + position.Y.ToString());
 
 			//
 			foreach (GameObject gO in gameObjects)

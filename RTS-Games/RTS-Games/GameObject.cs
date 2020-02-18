@@ -27,8 +27,8 @@ namespace RTS_Games
 
 		public virtual void LoadContent(ContentManager content)
 		{
-			spriteWidth = sprite.Width;
-			spriteHeight = sprite.Height;
+			//spriteWidth = sprite.Width;
+			//spriteHeight = sprite.Height;
 		}
 
 		public virtual void Update(GameTime update)
@@ -47,7 +47,7 @@ namespace RTS_Games
 
 		public virtual Rectangle CollisionBox
 		{
-			get { return new Rectangle((int)position.X - (int)origin.X, (int)position.Y - (int)origin.Y, spriteWidth, spriteHeight); }
+			get { return new Rectangle((int)position.X - (int)origin.X, (int)position.Y - (int)origin.Y, sprite.Width, sprite.Height); }
 		}
 
 		public abstract void OnCollision(GameObject other);
