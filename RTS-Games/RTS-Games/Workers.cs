@@ -27,32 +27,9 @@ namespace RTS_Games
             layerDepth = layer;
         }
 
-        public void MovementMethod()
+        public void MovementMethod() //Placeholder name. (because i done goofed)
         {
-            MouseState mouseState = Mouse.GetState();
-            Point mousePoint = new Point(mouseState.X, mouseState.Y);
-            Rectangle rectangle = new Rectangle(mousePoint.X, mousePoint.Y, sprite.Width, sprite.Height);
-
-            if (rectangle.Contains(mousePoint))
-            {
-                isHovered = true;
-                isClicked = mouseState.LeftButton == ButtonState.Pressed;
-
-                if (isHovered == true)  
-                {
-                    Console.WriteLine("isHovered is true");
-                }
-            }
-            else
-            {
-                isHovered = false;
-                isClicked = false;
-
-                if (isHovered == false)
-                {
-                    Console.WriteLine("isHovered is false");
-                }
-            }
+            
 
         }
 
@@ -80,7 +57,7 @@ namespace RTS_Games
         {
             //workerRectangle = new Rectangle(base.sprite.Width, base.sprite.Height);
 
-            spriteBatch.Draw(sprite, position,null , Color.White, 0, origin, size, spriteEffect, layerDepth);
+            spriteBatch.Draw(sprite, position, null , Color.White, 0, origin, size, spriteEffect, layerDepth);
 
         }
     }
