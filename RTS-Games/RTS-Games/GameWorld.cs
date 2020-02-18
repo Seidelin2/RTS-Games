@@ -14,8 +14,12 @@ namespace RTS_Games
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-		private List<GameObject> gameObjects = new List<GameObject>();
+		UnitSelection unitSelection = new UnitSelection();
+
+		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
+
+		
 
 		//Position
 		Vector2 position;
@@ -101,15 +105,17 @@ namespace RTS_Games
                 Exit();
 
 			// TODO: Add your update logic here
+			unitSelection.Update();
+
 			//Viser musens koordinat position i DEBUG mode
 			MouseState state = Mouse.GetState();
 
+
 			position.X = state.X;
 			position.Y = state.Y;
-
 			//Console.WriteLine(position.X.ToString() + "," + position.Y.ToString());
 
-			//
+			//Collision Check in GameObjects
 			foreach (GameObject gO in gameObjects)
 			{
 				gO.Update(gameTime);
@@ -119,6 +125,7 @@ namespace RTS_Games
 					gO.CheckCollision(other);
 				}
 			}
+
 
 			base.Update(gameTime);
         }
