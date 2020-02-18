@@ -29,30 +29,7 @@ namespace RTS_Games
 
         public void MovementMethod() //Placeholder name. (because i done goofed)
         {
-            //MouseState mouseState = Mouse.GetState();
-            //Point mousePoint = new Point(mouseState.X, mouseState.Y);
-            //Rectangle rectangle = new Rectangle(mousePoint.X, mousePoint.Y, sprite.Width, sprite.Height);
-
-            //if (rectangle.Contains(mousePoint))
-            //{
-            //    isHovered = true;
-            //    isClicked = mouseState.LeftButton == ButtonState.Pressed;
-
-            //    if (isHovered == true)  
-            //    {
-            //        Console.WriteLine("isHovered is true");
-            //    }
-            //}
-            //else
-            //{
-            //    isHovered = false;
-            //    isClicked = false;
-
-            //    if (isHovered == false)
-            //    {
-            //        Console.WriteLine("isHovered is false");
-            //    }
-            //}
+            
 
         }
 
