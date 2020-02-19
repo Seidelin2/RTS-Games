@@ -10,6 +10,7 @@ namespace RTS_Games
 {
 	public class BuildingSelection
 	{
+
 		List<Buildings> currentlySelectedBuilding = new List<Buildings>();
 
 		public void Update()

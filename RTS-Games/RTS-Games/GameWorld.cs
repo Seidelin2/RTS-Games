@@ -60,6 +60,15 @@ namespace RTS_Games
 			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 402), 0.05f);
 			gameObjects.Add(guild);
 
+			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.05f);
+			gameObjects.Add(barn);
+
+			Buildings mine = new Buildings("medievalHome_B", new Vector2(224, 88), 0.05f);
+			gameObjects.Add(mine);
+
+			Buildings log = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.05f);
+			gameObjects.Add(log);
+
 			//Tilføjer vores workerunit med filens navn, position og laget dybde
 			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
 			gameObjects.Add(worker);
@@ -115,7 +124,6 @@ namespace RTS_Games
 
 			//Viser musens koordinat position i DEBUG mode
 			MouseState state = Mouse.GetState();
-
 
 			position.X = state.X;
 			position.Y = state.Y;
