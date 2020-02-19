@@ -12,12 +12,17 @@ namespace RTS_Games
 {
     class Workers : GameObject
     {
-        string workerName;
+		//Texture
+		private Texture2D activeWorker, unactiveWorker;
+        private string workerName;
         Rectangle workerRectangle;
 
+		//Mouse Input
+		MouseState previousMS = Mouse.GetState();
+		MouseState newMS = Mouse.GetState();
 
-        bool isHovered = false;
-        bool isClicked = false;
+		//Available
+		private bool activated;
 
 
         public Workers(string worker, Vector2 position, float layer)
@@ -33,18 +38,27 @@ namespace RTS_Games
 
         }
 
-
         public override void Update(GameTime update)
         {
             MovementMethod();
+
+			CheckWorker();
 
             base.Update(update);
         }
         public override void LoadContent(ContentManager content)
         {
-            layerDepth = 0.12f;
+            unactiveWorker = content.Load<Texture2D>($"Sprites/NPC/{workerName}");
+            activeWorker = content.Load<Texture2D>($"Sprites/NPC/{workerName}_Outline");
 
-            sprite = content.Load<Texture2D>($"Sprites/NPC/{workerName}");
+			if(activated)
+			{
+				sprite = activeWorker;
+			}
+			else
+			{
+				sprite = unactiveWorker;
+			}
 
             origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
@@ -55,11 +69,29 @@ namespace RTS_Games
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //workerRectangle = new Rectangle(base.sprite.Width, base.sprite.Height);
-
             spriteBatch.Draw(sprite, position, null , Color.White, 0, origin, size, spriteEffect, layerDepth);
-
         }
+
+		protected void CheckWorker()
+		{
+			newMS = Mouse.GetState();
+			Rectangle mouseRectangle = new Rectangle(newMS.X, newMS.Y, 1, 1);
+
+			if(mouseRectangle.Intersects(CollisionBox))
+			{
+				if(sprite != activeWorker)
+				{
+					sprite = activeWorker;
+				}
+			}
+			else
+			{
+				if(sprite != unactiveWorker)
+				{
+					sprite = unactiveWorker;
+				}
+			}
+		}
     }
     
 }

@@ -416,6 +416,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/NPC/medievalUnit_F.png
 
+#begin Sprites/NPC/medievalUnit_F_Outline.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/NPC/medievalUnit_F_Outline.png
+
 #begin Sprites/NPC/medievalUnit_M.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -427,4 +439,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/NPC/medievalUnit_M.png
+
+#begin Sprites/NPC/medievalUnit_M_Outline.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/NPC/medievalUnit_M_Outline.png
 
