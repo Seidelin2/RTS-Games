@@ -20,8 +20,8 @@ namespace RTS_Games
 		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
 
-		//Game Font
-		SpriteFont GameFont;
+		////Game Font
+		//SpriteFont GameFont;
 
 		//Position
 		Vector2 position;
@@ -102,7 +102,7 @@ namespace RTS_Games
 			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionTexture");
 
 			//Tilføjer skrifttype til spillet
-			GameFont = Content.Load<SpriteFont>("GameFont");
+			//GameFont = Content.Load<SpriteFont>("GameFont");
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace RTS_Games
 			// TODO: Add your drawing code here
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
-			spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
+			//spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
 
 			//Udtegner alle objekter ud med collision texture
 			foreach (GameObject go in gameObjects)
