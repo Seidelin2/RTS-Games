@@ -53,7 +53,6 @@ namespace RTS_Games
             //Press Right Click to move it to the mouse position
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
-
                 int mouseX = Mouse.GetState().X;
                 int mouseY = Mouse.GetState().Y;
 
