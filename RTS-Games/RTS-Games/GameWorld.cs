@@ -16,9 +16,13 @@ namespace RTS_Games
 		public static Vector2 myPosition;
 
 		UnitSelection unitSelection = new UnitSelection();
+		BuildingSelection buildingSelection = new BuildingSelection();
 
 		public static List<GameObject> gameObjects = new List<GameObject>();
-		private static List<GameObject> newObjects = new List<GameObject>();
+		private static List<GameObject> newObjects = new List<GameObject>();
+
+		//Game Font
+		SpriteFont GameFont;
 
 		//Position
 		Vector2 position;
@@ -54,14 +58,30 @@ namespace RTS_Games
         {
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
-            this.IsMouseVisible = true;
 			myPosition = new Vector2(960, 540);
-			//Tilføjer vores workerunit med filens navn, position og laget dybde
+            this.IsMouseVisible = true;
+
+			//
+			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 402), 0.05f);
+			gameObjects.Add(guild);
+
+			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.05f);
+			gameObjects.Add(barn);
+
+			Buildings mine = new Buildings("medievalHome_B", new Vector2(224, 88), 0.05f);
+			gameObjects.Add(mine);
+
+			Buildings log = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.05f);
+			gameObjects.Add(log);
+
+			//Tilføjer vores workerunit med filens navn, position og laget dybde
+			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
+			gameObjects.Add(worker);
+
+			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
-			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);
-			gameObjects.Add(worker);
 
             base.Initialize();
         }
@@ -83,6 +103,9 @@ namespace RTS_Games
 
 			//Collision Texture for sprites
 			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionTexture");
+
+			//Tilføjer skrifttype til spillet
+			GameFont = Content.Load<SpriteFont>("GameFont");
         }
 
         /// <summary>
@@ -106,10 +129,10 @@ namespace RTS_Games
 
 			// TODO: Add your update logic here
 			unitSelection.Update();
+			buildingSelection.Update();
 
 			//Viser musens koordinat position i DEBUG mode
 			MouseState state = Mouse.GetState();
-
 
 			position.X = state.X;
 			position.Y = state.Y;
@@ -126,10 +149,6 @@ namespace RTS_Games
 				}
 			}
 
-			//Viser musens koordinat position i DEBUG mode
-			
-
-
 			base.Update(gameTime);
         }
 
@@ -144,8 +163,10 @@ namespace RTS_Games
 			// TODO: Add your drawing code here
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
-			//Udtegner alle objekter ud med collision texture
-			foreach(GameObject go in gameObjects)
+			spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
+
+			//Udtegner alle objekter ud med collision texture
+			foreach (GameObject go in gameObjects)
 			{
 				go.Draw(spriteBatch);
 				#if DEBUG
@@ -164,40 +185,13 @@ namespace RTS_Games
 			newObjects.Add(go);
 		}
 
-		public static void InstantiateCall()
-		{
-			gameObjects.AddRange(newObjects);
-			newObjects.Clear();
-		}
-
-		//Fjerner vores sprite ved at gå ned til CallDestory()
-		public static void Destroy(GameObject go)
-		{
-			//destroyObject.Add(go);
-		}
-
-		private void CallDestory()
-		{
-			//Ny list tmp
-			List<GameObject> tmp = new List<GameObject>();
-
-			//tmp er vores gameObjects
-			tmp = gameObjects;
-
-			//For enhver GameObject i destroyObject skal der fjernes en objekt
-			//foreach (GameObject go in destroyObject)
-			//{
-			//	tmp.Remove(go);
-			//}
-
-			//destroyObject er vores nye List
-			//destroyObject = new List<GameObject>();
-
-			//Listen er vores tmp
-			gameObjects = tmp;
-		}
-
-		//Udtegner Collsion rundt om vores Sprites
+		public static void InstantiateCall()
+		{
+			gameObjects.AddRange(newObjects);
+			newObjects.Clear();
+		}
+
+		//Udtegner Collsion rundt om vores Sprites
 		private void DrawCollisionBox(GameObject go)
 		{
 			Rectangle collsionBox = go.CollisionBox;

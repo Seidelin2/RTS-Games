@@ -42,7 +42,7 @@ namespace RTS_Games
                         if (mouseRectangle.Intersects((x as Workers).workerBox))
                         {
                             currentlySelectedWorker.Add(x as Workers);
-                            Console.WriteLine("Hello there Mr Kanobi");
+                            //Console.WriteLine("Hello there Mr Kanobi");
                         }
                     }
                 }
@@ -55,7 +55,6 @@ namespace RTS_Games
             //Press Right Click to move it to the mouse position
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
-
                 int mouseX = Mouse.GetState().X;
                 int mouseY = Mouse.GetState().Y;
 
