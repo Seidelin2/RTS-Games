@@ -127,7 +127,7 @@ namespace RTS_Games
 			}
 
 			//Viser musens koordinat position i DEBUG mode
-
+			
 
 
 			base.Update(gameTime);

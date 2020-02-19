@@ -13,13 +13,11 @@ namespace RTS_Games
     class Workers : GameObject
     {
         string workerName;
-        Vector2 position;
+        
 
         
         Vector2 goToThisNewPosition;
 
-        public Vector2 Direction { get; set; }
-        public float Speed { get; set; }
 
 
         public Workers(string worker, Vector2 position, float layer)
@@ -34,6 +32,7 @@ namespace RTS_Games
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
+                    
         }
 
         public void GetNewPosition(Vector2 whatever)
