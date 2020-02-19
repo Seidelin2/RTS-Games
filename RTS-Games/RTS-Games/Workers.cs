@@ -15,7 +15,6 @@ namespace RTS_Games
 		//Texture
 		private Texture2D activeWorker, unactiveWorker;
         private string workerName;
-        Rectangle workerRectangle;
 
 		//Mouse Input
 		MouseState previousMS = Mouse.GetState();
