@@ -79,7 +79,9 @@ namespace RTS_Games
 			gameObjects.Add(worker);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
-			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
+			//Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
+			gameObjects.Add(worker);
+
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);
 

@@ -50,7 +50,7 @@ namespace RTS_Games
         }
         public override void Update(GameTime update)
         {
-            MovementMethod();
+            //MovementMethod();
 
 			CheckWorker();
 
