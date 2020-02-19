@@ -19,6 +19,7 @@ namespace RTS_Games
 		//Mouse Input
 		MouseState previousMS = Mouse.GetState();
 		MouseState newMS = Mouse.GetState();
+        Vector2 goToThisNewPosition = new Vector2(100,100);
 
 		//Available
 		private bool activated;
@@ -31,20 +32,66 @@ namespace RTS_Games
             layerDepth = layer;
         }
 
-        public void MovementMethod() //Placeholder name. (because i done goofed)
-        {
-            
+        //public void Move(Vector2 newPosition)
+        //{
+        //    int mouseX = Mouse.GetState().X;
+        //    int mouseY = Mouse.GetState().Y;
 
+        //    Vector2 newMousePos = new Vector2(mouseX, mouseY);
+
+        //    position += new Vector2(newMousePos.X, newMousePos.Y);
+
+        //    newPosition = goToThisNewPosition;
+        //}
+
+        public void Movement()
+        {
+            Vector2 tmpDirection = new Vector2(0, 0);
+
+            if (position.X > goToThisNewPosition.X)
+            {
+                tmpDirection += new Vector2(-1, 0);
+                
+            }
+
+            if (position.X < goToThisNewPosition.X)
+            {
+                tmpDirection += new Vector2(1, 0);
+            }
+
+            if (position.Y > goToThisNewPosition.Y)
+            {
+                tmpDirection += new Vector2(0, -1);
+            }
+
+            if (position.Y < goToThisNewPosition.Y)
+            {
+                tmpDirection += new Vector2(0, 1);
+            }
+
+            tmpDirection.Normalize();
+
+            velocity = tmpDirection;
         }
+
+        //public void GetNewPosition(Vector2 whatever)
+        //{
+
+        //    goToThisNewPosition = whatever;
+
+
+        //}
 
         public override void Update(GameTime update)
         {
-            MovementMethod();
+            //MovementMethod();
 
 			CheckWorker();
-
+            Movement();
+            Move(update);
             base.Update(update);
         }
+
         public override void LoadContent(ContentManager content)
         {
             unactiveWorker = content.Load<Texture2D>($"Sprites/NPC/{workerName}");
@@ -61,6 +108,15 @@ namespace RTS_Games
 
             origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
+        }
+
+
+        public Rectangle workerBox
+        {
+            get
+            {
+                return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), sprite.Width, sprite.Height);
+            }
         }
 
         public override void OnCollision(GameObject other)
