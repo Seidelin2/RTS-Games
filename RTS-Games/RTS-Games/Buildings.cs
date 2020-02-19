@@ -72,10 +72,10 @@ namespace RTS_Games
 			if(mouseRectangle.Intersects(CollisionBox))
 			{
 				//Click event
-				if(newMS.LeftButton == ButtonState.Pressed && previousMS.LeftButton == ButtonState.Released)
-				{
-					activated = true;
-				}
+				//if(newMS.LeftButton == ButtonState.Pressed && previousMS.LeftButton == ButtonState.Released)
+				//{
+				//	activated = true;
+				//}
 				
 				//Set sprite til active
 				if(sprite != activeBuilding)

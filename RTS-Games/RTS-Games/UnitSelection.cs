@@ -49,7 +49,6 @@ namespace RTS_Games
         {
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
-
                 int mouseX = Mouse.GetState().X;
                 int mouseY = Mouse.GetState().Y;
 
