@@ -72,15 +72,18 @@ namespace RTS_Games
 			gameObjects.Add(mine);
 
 			Buildings log = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.05f);
-			gameObjects.Add(log);
-
-			//Tilføjer vores workerunit med filens navn, position og laget dybde
-			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
+			gameObjects.Add(log);
+
+
+
+			//Tilføjer vores workerunit med filens navn, position og laget dybde
+			myPosition = new Vector2(960, 540);
+			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
 			gameObjects.Add(worker);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			//Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
-			gameObjects.Add(worker);
+			//gameObjects.Add(worker);
 
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);
@@ -149,6 +152,11 @@ namespace RTS_Games
 				{
 					gO.CheckCollision(other);
 				}
+			}
+
+			if (Keyboard.GetState().IsKeyDown(Keys.W))
+			{
+				myPosition.Y -= 1;
 			}
 
 			base.Update(gameTime);

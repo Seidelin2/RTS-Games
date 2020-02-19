@@ -21,7 +21,7 @@ namespace RTS_Games
 		protected Vector2 position;
 
 		//Speed og Velocity
-		protected float speed = 300;
+		protected float speed = 100f;
 		protected Vector2 velocity;
 
 		public virtual void LoadContent(ContentManager content)

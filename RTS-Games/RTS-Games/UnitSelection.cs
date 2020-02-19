@@ -66,7 +66,7 @@ namespace RTS_Games
                 {
                     
 
-                    workwork.GetNewPosition(newPosition);
+                    //workwork.Move(newPosition);
                     Console.WriteLine("Moving Worker to mouse position");
                 }
             }
