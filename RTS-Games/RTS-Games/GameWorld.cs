@@ -13,6 +13,7 @@ namespace RTS_Games
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+		public static Vector2 myPosition;
 
 		UnitSelection unitSelection = new UnitSelection();
 
@@ -54,8 +55,9 @@ namespace RTS_Games
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
             this.IsMouseVisible = true;
+			myPosition = new Vector2(960, 540);
 			//Tilføjer vores workerunit med filens navn, position og laget dybde
-			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
+			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);

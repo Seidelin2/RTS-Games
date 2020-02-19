@@ -13,10 +13,12 @@ namespace RTS_Games
         //List for currently selected workers
         List<Workers> currentlySelectedWorker = new List<Workers>();
 
+
         //Update method we call over in game world
         public void Update()
         {
             SelectedWorker();
+            MoveSelectedWorker();
         }
 
         public void SelectedWorker()
@@ -37,7 +39,7 @@ namespace RTS_Games
                 {
                     if (x is Workers)
                     {
-                        if (mouseRectangle.Intersects((x as Workers).CollisionBox))
+                        if (mouseRectangle.Intersects((x as Workers).workerBox))
                         {
                             currentlySelectedWorker.Add(x as Workers);
                             Console.WriteLine("Hello there Mr Kanobi");
@@ -63,8 +65,10 @@ namespace RTS_Games
 
                 foreach (Workers workwork in currentlySelectedWorker)
                 {
-                    //workwork.move(newPosition)
-                    Console.WriteLine($"Moving Worker to mouse position {0}", workwork);
+                    
+
+                    workwork.GetNewPosition(newPosition);
+                    Console.WriteLine("Moving Worker to mouse position");
                 }
             }
         }

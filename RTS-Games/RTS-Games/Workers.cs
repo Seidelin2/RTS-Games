@@ -13,6 +13,13 @@ namespace RTS_Games
     class Workers : GameObject
     {
         string workerName;
+        Vector2 position;
+
+        
+        Vector2 goToThisNewPosition;
+
+        public Vector2 Direction { get; set; }
+        public float Speed { get; set; }
 
 
         public Workers(string worker, Vector2 position, float layer)
@@ -22,19 +29,30 @@ namespace RTS_Games
             layerDepth = layer;
         }
 
-        public void MovementMethod() //Placeholder name. (because i done goofed)
+        public void Movement(GameTime gameTime)
         {
-            
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
 
         }
+
+        public void GetNewPosition(Vector2 whatever)
+        {
+
+            goToThisNewPosition = whatever;
+
+
+        }
+
+
 
 
         public override void Update(GameTime update)
         {
-            MovementMethod();
-
+            Movement(update);
             base.Update(update);
         }
+
         public override void LoadContent(ContentManager content)
         {
             layerDepth = 0.12f;
@@ -43,6 +61,15 @@ namespace RTS_Games
 
             origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
+        }
+
+
+        public Rectangle workerBox
+        {
+            get
+            {
+                return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), sprite.Width, sprite.Height);
+            }
         }
 
         public override void OnCollision(GameObject other)
