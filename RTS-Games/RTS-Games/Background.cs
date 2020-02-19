@@ -13,6 +13,13 @@ namespace RTS_Games
 	{
 		private string backgroundName;
 
+		public Background(string background, Vector2 position, float layer)
+		{
+			backgroundName = background;
+			this.position = position;
+			layerDepth = layer;
+		}
+
 		public override void LoadContent(ContentManager content)
 		{
 			layerDepth = 0.05f;
@@ -32,13 +39,6 @@ namespace RTS_Games
 		public override void OnCollision(GameObject other)
 		{
 
-		}
-
-		public Background(string background, Vector2 position, float layer)
-		{
-			backgroundName = background;
-			this.position = position;
-			layerDepth = layer;
 		}
 	}
 }
