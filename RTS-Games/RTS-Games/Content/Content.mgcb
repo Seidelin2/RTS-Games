@@ -13,13 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Gamefont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Gamefont.spritefont
-
 #begin Sprites/Background/World_Map.png
 /importer:TextureImporter
 /processor:TextureProcessor
