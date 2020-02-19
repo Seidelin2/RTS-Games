@@ -64,9 +64,7 @@ namespace RTS_Games
 
                 foreach (Workers workwork in currentlySelectedWorker)
                 {
-                    
-
-                    //workwork.Move(newPosition);
+                    workwork.Move(newPosition);
                     Console.WriteLine("Moving Worker to mouse position");
                 }
             }

@@ -19,7 +19,7 @@ namespace RTS_Games
 		//Mouse Input
 		MouseState previousMS = Mouse.GetState();
 		MouseState newMS = Mouse.GetState();
-        Vector2 goToThisNewPosition = new Vector2(100,100);
+        Vector2 goToThisNewPosition = new Vector2(800, 452);
 
 		//Available
 		private bool activated;
@@ -32,41 +32,42 @@ namespace RTS_Games
             layerDepth = layer;
         }
 
-        //public void Move(Vector2 newPosition)
-        //{
-        //    int mouseX = Mouse.GetState().X;
-        //    int mouseY = Mouse.GetState().Y;
+		public void Move(Vector2 newPosition)
+		{
+			//int mouseX = Mouse.GetState().X;
+			//int mouseY = Mouse.GetState().Y;
 
-        //    Vector2 newMousePos = new Vector2(mouseX, mouseY);
+			//Vector2 newMousePos = new Vector2(mouseX, mouseY);
 
-        //    position += new Vector2(newMousePos.X, newMousePos.Y);
+			//position += new Vector2(newMousePos.X, newMousePos.Y);
 
-        //    newPosition = goToThisNewPosition;
-        //}
+			//newPosition = goToThisNewPosition;
 
-        public void Movement()
+			goToThisNewPosition = newPosition;
+		}
+
+		public void Movement()
         {
             Vector2 tmpDirection = new Vector2(0, 0);
-
-            if (position.X > goToThisNewPosition.X)
-            {
-                tmpDirection += new Vector2(-1, 0);
-                
-            }
 
             if (position.X < goToThisNewPosition.X)
             {
                 tmpDirection += new Vector2(1, 0);
             }
 
-            if (position.Y > goToThisNewPosition.Y)
+            if (position.X > goToThisNewPosition.X)
             {
-                tmpDirection += new Vector2(0, -1);
+                tmpDirection += new Vector2(-1, 0);    
             }
 
             if (position.Y < goToThisNewPosition.Y)
             {
                 tmpDirection += new Vector2(0, 1);
+            }
+
+            if (position.Y > goToThisNewPosition.Y)
+            {
+                tmpDirection += new Vector2(0, -1);
             }
 
             tmpDirection.Normalize();
