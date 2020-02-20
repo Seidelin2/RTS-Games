@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -19,9 +19,9 @@ namespace RTS_Games
 		BuildingSelection buildingSelection = new BuildingSelection();
 
 		public static List<GameObject> gameObjects = new List<GameObject>();
-		private static List<GameObject> newObjects = new List<GameObject>();
-
-		////Game Font
+		private static List<GameObject> newObjects = new List<GameObject>();
+
+		////Game Font
 		//SpriteFont GameFont;
 
 		//Position
@@ -59,18 +59,18 @@ namespace RTS_Games
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
 			myPosition = new Vector2(960, 540);
-            this.IsMouseVisible = true;
-
-			//
+            this.IsMouseVisible = true;
+
+			//
 			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 402), 0.05f);
 			gameObjects.Add(guild);
 
 			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.05f);
-			gameObjects.Add(barn);
-
+			gameObjects.Add(barn);
+
 			Buildings mine = new Buildings("medievalHome_B", new Vector2(224, 88), 0.05f);
-			gameObjects.Add(mine);
-
+			gameObjects.Add(mine);
+
 			Buildings log = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.05f);
 			gameObjects.Add(log);
 
@@ -79,9 +79,9 @@ namespace RTS_Games
 			//Tilføjer vores workerunit med filens navn, position og laget dybde
 			myPosition = new Vector2(960, 540);
 			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
-			gameObjects.Add(worker);
-
-			//Tilføjer vores baggrund med filens navn, position og lager dybde
+			gameObjects.Add(worker);
+
+			//Tilføjer vores baggrund med filens navn, position og lager dybde
 			//Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
 			//gameObjects.Add(worker);
 
@@ -173,9 +173,9 @@ namespace RTS_Games
 			// TODO: Add your drawing code here
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
-			//spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
-
-			//Udtegner alle objekter ud med collision texture
+			//spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
+
+			//Udtegner alle objekter ud med collision texture
 			foreach (GameObject go in gameObjects)
 			{
 				go.Draw(spriteBatch);
@@ -195,13 +195,13 @@ namespace RTS_Games
 			newObjects.Add(go);
 		}
 
-		public static void InstantiateCall()
-		{
-			gameObjects.AddRange(newObjects);
-			newObjects.Clear();
-		}
-
-		//Udtegner Collsion rundt om vores Sprites
+		public static void InstantiateCall()
+		{
+			gameObjects.AddRange(newObjects);
+			newObjects.Clear();
+		}
+
+		//Udtegner Collsion rundt om vores Sprites
 		private void DrawCollisionBox(GameObject go)
 		{
 			Rectangle collsionBox = go.CollisionBox;
