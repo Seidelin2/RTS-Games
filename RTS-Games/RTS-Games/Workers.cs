@@ -19,7 +19,7 @@ namespace RTS_Games
 		//Mouse Input
 		MouseState previousMS = Mouse.GetState();
 		MouseState newMS = Mouse.GetState();
-        Vector2 goToThisNewPosition = new Vector2(955, 540);
+        Vector2 goToThisNewPosition = new Vector2(224, 88);
 
 		//Activated
 		private bool activated;
@@ -72,8 +72,6 @@ namespace RTS_Games
 
         public override void Update(GameTime update)
         {
-            //MovementMethod();
-
 			CheckWorker();
             Movement();
             Move(update);
@@ -116,10 +114,15 @@ namespace RTS_Games
 
 			if (other is Buildings.Mine)
 			{
-				Console.WriteLine("Diglet dig diglet dig, Dugtrio trio trio");
+				//Console.WriteLine("Diglet dig diglet dig, Dugtrio trio trio");
 			}
 
 			if (other is Buildings.Farm)
+			{
+				Console.WriteLine("Farming cabbages");
+			}
+
+			if (other is Buildings.LogHouse)
 			{
 				Console.WriteLine("Farming cabbages");
 			}
