@@ -19,30 +19,25 @@ namespace RTS_Games
 		//Mouse Input
 		MouseState previousMS = Mouse.GetState();
 		MouseState newMS = Mouse.GetState();
-        Vector2 goToThisNewPosition = new Vector2(800, 452);
+        Vector2 goToThisNewPosition = new Vector2(955, 540);
 
-		//Available
+		//Activated
 		private bool activated;
 
-
-        public Workers(string worker, Vector2 position, float layer)
+		public Workers(string worker, Vector2 position, float layer)
         {
             workerName = worker;
             this.position = position;
             layerDepth = layer;
         }
 
+		public override void Draw(SpriteBatch spriteBatch)
+		{
+			spriteBatch.Draw(sprite, position, null, Color.White, 0, origin, size, spriteEffect, layerDepth);
+		}
+
 		public void Move(Vector2 newPosition)
 		{
-			//int mouseX = Mouse.GetState().X;
-			//int mouseY = Mouse.GetState().Y;
-
-			//Vector2 newMousePos = new Vector2(mouseX, mouseY);
-
-			//position += new Vector2(newMousePos.X, newMousePos.Y);
-
-			//newPosition = goToThisNewPosition;
-
 			goToThisNewPosition = newPosition;
 		}
 
@@ -74,14 +69,6 @@ namespace RTS_Games
 
             velocity = tmpDirection;
         }
-
-        //public void GetNewPosition(Vector2 whatever)
-        //{
-
-        //    goToThisNewPosition = whatever;
-
-
-        //}
 
         public override void Update(GameTime update)
         {
@@ -122,11 +109,21 @@ namespace RTS_Games
 
         public override void OnCollision(GameObject other)
         {
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(sprite, position, null , Color.White, 0, origin, size, spriteEffect, layerDepth);
-        }
+			if(other is Guild)
+			{
+				Console.WriteLine("I used to be an adventurer like you, but then I took an arrow to the knee");
+			}
+
+			if (other is Buildings.Mine)
+			{
+				Console.WriteLine("Diglet dig diglet dig, Dugtrio trio trio");
+			}
+
+			if (other is Buildings.Farm)
+			{
+				Console.WriteLine("Farming cabbages");
+			}
+		}
 
 		protected void CheckWorker()
 		{
