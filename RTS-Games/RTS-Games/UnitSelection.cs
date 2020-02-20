@@ -13,7 +13,6 @@ namespace RTS_Games
         //List for currently selected workers
         List<Workers> currentlySelectedWorker = new List<Workers>();
 
-
         //Update method we call over in game world
         public void Update()
         {
@@ -69,7 +68,5 @@ namespace RTS_Games
                 }
             }
         }
-
-
     }
 }
