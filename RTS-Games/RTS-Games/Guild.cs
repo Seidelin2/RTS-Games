@@ -63,6 +63,8 @@ namespace RTS_Games
 
 		}
 
+
+
 		protected void CheckBuilding()
 		{
 			newMS = Mouse.GetState();
