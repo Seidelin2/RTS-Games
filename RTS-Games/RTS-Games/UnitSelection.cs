@@ -41,7 +41,7 @@ namespace RTS_Games
                         if (mouseRectangle.Intersects((x as Workers).workerBox))
                         {
                             currentlySelectedWorker.Add(x as Workers);
-                            //Console.WriteLine("Hello there Mr Kanobi");
+                            //Console.WriteLine("Hello there Mr Kenobi");
                         }
                     }
                 }
@@ -63,8 +63,14 @@ namespace RTS_Games
 
                 foreach (Workers workwork in currentlySelectedWorker)
                 {
+
                     workwork.Move(newPosition);
-                    Console.WriteLine("Moving Worker to mouse position");
+                    if (workwork.workerState != Workers.workerBehavivor.moving)
+                    {
+                        workwork.workerState = Workers.workerBehavivor.moving;
+
+                    }
+                    //Console.WriteLine("Moving Worker to mouse position");
                 }
             }
         }
