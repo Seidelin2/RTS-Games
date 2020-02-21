@@ -117,8 +117,8 @@ namespace RTS_Games
 			}
 			finally
 			{
-				Console.WriteLine($"The current inventory is : {currentInventory}");
 				Thread.Sleep(500);
+				Console.WriteLine($"The current inventory is : {currentInventory}");
 				if (currentInventory >= maxInventory)
 				{
 					Console.WriteLine("Moving home");
