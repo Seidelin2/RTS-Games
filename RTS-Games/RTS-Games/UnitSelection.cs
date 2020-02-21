@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -10,16 +10,19 @@ namespace RTS_Games
 {
     public class UnitSelection
     {
+        //List for currently selected workers
         List<Workers> currentlySelectedWorker = new List<Workers>();
 
+        //Update method we call over in game world
         public void Update()
         {
             SelectedWorker();
+            MoveSelectedWorker();
         }
 
         public void SelectedWorker()
         {
-
+            //Left click to select a worker
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 currentlySelectedWorker.Clear();
@@ -35,10 +38,10 @@ namespace RTS_Games
                 {
                     if (x is Workers)
                     {
-                        if (mouseRectangle.Intersects((x as Workers).CollisionBox))
+                        if (mouseRectangle.Intersects((x as Workers).workerBox))
                         {
                             currentlySelectedWorker.Add(x as Workers);
-                            //Console.WriteLine("Hello there Mr Kanobi");
+                            //Console.WriteLine("Hello there Mr Kenobi");
                         }
                     }
                 }
@@ -47,6 +50,8 @@ namespace RTS_Games
 
         public void MoveSelectedWorker()
         {
+            //When a Worker is selected 
+            //Press Right Click to move it to the mouse position
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
                 int mouseX = Mouse.GetState().X;
@@ -58,11 +63,16 @@ namespace RTS_Games
 
                 foreach (Workers workwork in currentlySelectedWorker)
                 {
-                    //workwork.move(newPosition)
+
+                    workwork.Move(newPosition);
+                    if (workwork.workerState != Workers.workerBehavivor.moving)
+                    {
+                        workwork.workerState = Workers.workerBehavivor.moving;
+
+                    }
+                    //Console.WriteLine("Moving Worker to mouse position");
                 }
             }
         }
-
-
     }
 }

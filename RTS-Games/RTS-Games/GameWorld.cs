@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,6 +13,7 @@ namespace RTS_Games
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+		public static Vector2 myPosition;
 
 		UnitSelection unitSelection = new UnitSelection();
 		BuildingSelection buildingSelection = new BuildingSelection();
@@ -20,8 +21,8 @@ namespace RTS_Games
 		public static List<GameObject> gameObjects = new List<GameObject>();
 		private static List<GameObject> newObjects = new List<GameObject>();
 
-		//Game Font
-		SpriteFont GameFont;
+		////Game Font
+		//SpriteFont GameFont;
 
 		//Position
 		Vector2 position;
@@ -57,23 +58,26 @@ namespace RTS_Games
         {
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
+			//myPosition = new Vector2(960, 540);
             this.IsMouseVisible = true;
 
-			//
-			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 402), 0.05f);
+			//Tilføjer voees Bygninger til GameWorld med navn til filen, position og lager dybde
+			Guild guild = new Guild("medievalCastle", new Vector2(800, 402), 0.05f);
 			gameObjects.Add(guild);
 
-			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.05f);
+			Buildings.Farm barn = new Buildings.Farm("medievalBarn", new Vector2(1177, 37), 0.05f);
 			gameObjects.Add(barn);
 
-			Buildings mine = new Buildings("medievalHome_B", new Vector2(224, 88), 0.05f);
+			Buildings.Mine mine = new Buildings.Mine("medievalHome_B", new Vector2(224, 88), 0.05f);
 			gameObjects.Add(mine);
 
-			Buildings log = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.05f);
+			Buildings.LogHouse log = new Buildings.LogHouse("medievalLogStorage", new Vector2(480, 920), 0.05f);
 			gameObjects.Add(log);
 
-			//Tilføjer vores workerunit med filens navn, position og laget dybde
-			Workers worker = new Workers("medievalUnit_F", new Vector2(960, 540), 0.12f);
+            //Tilføjer vores workerunit med filens navn, position og laget dybde
+            myPosition = new Vector2(960, 540);
+            //myPosition = new Vector2(224, 118);
+            Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
 			gameObjects.Add(worker);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
@@ -102,7 +106,7 @@ namespace RTS_Games
 			collisionTexture = Content.Load<Texture2D>("Sprites/CollisionTexture");
 
 			//Tilføjer skrifttype til spillet
-			GameFont = Content.Load<SpriteFont>("GameFont");
+			//GameFont = Content.Load<SpriteFont>("GameFont");
         }
 
         /// <summary>
@@ -146,6 +150,11 @@ namespace RTS_Games
 				}
 			}
 
+			if (Keyboard.GetState().IsKeyDown(Keys.W))
+			{
+				myPosition.Y -= 1;
+			}
+
 			base.Update(gameTime);
         }
 
@@ -160,7 +169,7 @@ namespace RTS_Games
 			// TODO: Add your drawing code here
 			spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
-			spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
+			//spriteBatch.DrawString(GameFont, "TestFont", new Vector2(0, 0), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
 
 			//Udtegner alle objekter ud med collision texture
 			foreach (GameObject go in gameObjects)
