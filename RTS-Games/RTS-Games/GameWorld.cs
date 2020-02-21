@@ -58,7 +58,7 @@ namespace RTS_Games
         {
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
-			myPosition = new Vector2(960, 540);
+			//myPosition = new Vector2(960, 540);
             this.IsMouseVisible = true;
 
 			//Tilføjer voees Bygninger til GameWorld med navn til filen, position og lager dybde
@@ -74,9 +74,10 @@ namespace RTS_Games
 			Buildings.LogHouse log = new Buildings.LogHouse("medievalLogStorage", new Vector2(480, 920), 0.05f);
 			gameObjects.Add(log);
 
-			//Tilføjer vores workerunit med filens navn, position og laget dybde
-			myPosition = new Vector2(960, 540);
-			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
+            //Tilføjer vores workerunit med filens navn, position og laget dybde
+            myPosition = new Vector2(960, 540);
+            //myPosition = new Vector2(224, 118);
+            Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
 			gameObjects.Add(worker);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde

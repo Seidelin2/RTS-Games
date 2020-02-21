@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -12,6 +13,9 @@ namespace RTS_Games.Buildings
 {
 	class Mine : GameObject
 	{
+        static Semaphore MySemaphore = new Semaphore(3,3);
+
+
 		//Texture
 		Texture2D unactiveBuilding, activeBuilding;
 		private string goldMineName;
@@ -88,5 +92,31 @@ namespace RTS_Games.Buildings
 
 			previousMS = newMS;
 		}
-	}
+
+        //public static void WaitingInLine()
+        //{
+        //    for (int i = 1; i < 5; i++)
+        //    {
+        //        new Thread(Enter).Start(i);
+        //    }
+
+        //    Thread.Sleep(500);
+        //    Console.WriteLine("Main Thread Calls release(3)");
+        //    MySemaphore.Release(3);
+        //    Console.ReadKey();
+
+
+        //}
+
+        //static void Enter(object id)
+        //{
+        //    Console.WriteLine(id + " Starts and waits outside to enter");
+        //    MySemaphore.WaitOne();
+        //    Console.WriteLine(id + " Enters the Gold Mine!");
+        //    Thread.Sleep(1000 * (int)id);
+        //    Console.WriteLine(id + " Worker is leavign the mine");
+        //    MySemaphore.Release();
+
+        //}
+    }
 }
