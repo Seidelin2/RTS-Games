@@ -8,34 +8,34 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace RTS_Games
+namespace RTS_Games.Buildings
 {
-	class Buildings : GameObject
+	class LogHouse : GameObject
 	{
 		//Texture
 		Texture2D unactiveBuilding, activeBuilding;
-		private string buildingName;
+		private string logHouseName;
 
 		//Mouse Input
 		MouseState previousMS = Mouse.GetState();
 		MouseState newMS = Mouse.GetState();
 
-		//Available
+		//Activated
 		private bool activated;
 
-		public Buildings(string building, Vector2 position, float layer)
+		public LogHouse(string logName, Vector2 position, float layer)
 		{
-			buildingName = building;
+			logHouseName = logName;
 			this.position = position;
 			layerDepth = layer;
 		}
 
 		public override void LoadContent(ContentManager content)
 		{
-			unactiveBuilding = content.Load<Texture2D>($"Sprites/Buildings/{buildingName}");
-			activeBuilding = content.Load<Texture2D>($"Sprites/Buildings/{buildingName}_Outline");
+			unactiveBuilding = content.Load<Texture2D>($"Sprites/Buildings/{logHouseName}");
+			activeBuilding = content.Load<Texture2D>($"Sprites/Buildings/{logHouseName}_Outline");
 
-			if(activated)
+			if (activated)
 			{
 				sprite = activeBuilding;
 			}
@@ -69,16 +69,10 @@ namespace RTS_Games
 			Rectangle mouseRectangle = new Rectangle(newMS.X, newMS.Y, 1, 1);
 
 			//Hover ved vores bygninger
-			if(mouseRectangle.Intersects(CollisionBox))
+			if (mouseRectangle.Intersects(CollisionBox))
 			{
-				//Click event
-				//if(newMS.LeftButton == ButtonState.Pressed && previousMS.LeftButton == ButtonState.Released)
-				//{
-				//	activated = true;
-				//}
-				
 				//Set sprite til active
-				if(sprite != activeBuilding)
+				if (sprite != activeBuilding)
 				{
 					sprite = activeBuilding;
 				}
@@ -92,7 +86,7 @@ namespace RTS_Games
 				}
 			}
 
-			previousMS = newMS; 
+			previousMS = newMS;
 		}
 	}
 }

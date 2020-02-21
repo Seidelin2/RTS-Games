@@ -7,31 +7,48 @@ using System.Threading.Tasks;
 
 namespace RTS_Games
 {
-    class GoldMine
+    public class Goldmine
     {
-        static Semaphore mySemaphore = new Semaphore(0,3);
+        static decimal balance = 1000;
+        static Object thisLock = new object(); // Object that is going to get locked
 
-        static void Goldmine()
+
+        static void MonitorThread(string)
         {
-            for (int i = 0; i <= 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                new Thread(Enter).Start(i);
+                Thread T = new Thread(new ParameterizedThreadStart(Withdraw));
+
+                T.Start(15);
             }
 
-            Thread.Sleep(500);
-            Console.WriteLine("Main thread calls Release(3)");
-            mySemaphore.Release(3);
             Console.ReadKey();
         }
 
-        static void Enter(object id)
+        static void Withdraw(Object obj)
         {
-            Console.WriteLine(id + "Starts and waits outside to enter");
-            mySemaphore.WaitOne();
-            Console.WriteLine(id + "Enters the nightclub");
-            Thread.Sleep(1000 * (int)id);
-            Console.WriteLine(id + "is leaving");
-            mySemaphore.Release();
+            int amount = (int)obj;
+            Monitor.Enter(thisLock);
+            try
+            {
+                if (amount > balance)
+                {
+                    Console.WriteLine("Nothing is left to get! Move on!");
+                    return;
+                }
+                else
+                {
+                    balance -= amount;
+                    Console.WriteLine(balance);
+                }
+            }
+            finally
+            {
+
+                Monitor.Exit(thisLock);
+            }
         }
+
+
     }
 }

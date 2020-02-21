@@ -46,9 +46,12 @@
   <ItemGroup>
     <Compile Include="Background.cs" />
     <Compile Include="BuildingSelection.cs" />
+    <Compile Include="Buildings\Farm.cs" />
+    <Compile Include="Buildings\LogHouse.cs" />
+    <Compile Include="Buildings\Mine.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="Buildings.cs" />
+    <Compile Include="Guild.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitSelection.cs" />

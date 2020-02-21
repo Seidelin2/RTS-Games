@@ -11,7 +11,10 @@ namespace RTS_Games
 	public class BuildingSelection
 	{
 
-		List<Buildings> currentlySelectedBuilding = new List<Buildings>();
+		List<Guild> currentlySelectedGuild = new List<Guild>();
+		List<Buildings.Mine> currentlySelectedMine = new List<Buildings.Mine>();
+		List<Buildings.Farm> currentlySelectedFarm = new List<Buildings.Farm>();
+		List<Buildings.LogHouse> currentlySelectedLog = new List<Buildings.LogHouse>();
 
 		public void Update()
 		{
@@ -22,7 +25,7 @@ namespace RTS_Games
 		{
 			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 			{
-				currentlySelectedBuilding.Clear();
+				currentlySelectedGuild.Clear();
 
 				int mouseX = Mouse.GetState().X;
 				int mouseY = Mouse.GetState().Y;
@@ -33,12 +36,39 @@ namespace RTS_Games
 
 				foreach(GameObject go in GameWorld.gameObjects)
 				{
-					if(go is Buildings)
+					if(go is Guild)
 					{
-						if (mouseRectangle.Intersects((go as Buildings).CollisionBox))
+						if (mouseRectangle.Intersects((go as Guild).CollisionBox))
 						{
-							currentlySelectedBuilding.Add(go as Buildings);
-							Console.WriteLine("Building selected");
+							currentlySelectedGuild.Add(go as Guild);
+							Console.WriteLine("Guild selected");
+						}
+					}
+
+					if (go is Buildings.Mine)
+					{
+						if (mouseRectangle.Intersects((go as Buildings.Mine).CollisionBox))
+						{
+							currentlySelectedMine.Add(go as Buildings.Mine);
+							Console.WriteLine("Mine selected");
+						}
+					}
+
+					if (go is Buildings.Farm)
+					{
+						if (mouseRectangle.Intersects((go as Buildings.Farm).CollisionBox))
+						{
+							currentlySelectedFarm.Add(go as Buildings.Farm);
+							Console.WriteLine("Farm selected");
+						}
+					}
+
+					if (go is Buildings.LogHouse)
+					{
+						if (mouseRectangle.Intersects((go as Buildings.LogHouse).CollisionBox))
+						{
+							currentlySelectedLog.Add(go as Buildings.LogHouse);
+							Console.WriteLine("Log selected");
 						}
 					}
 				}
