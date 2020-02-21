@@ -19,7 +19,8 @@ namespace RTS_Games
         public enum workerBehavivor
         {
             moving,
-            mining
+            mining,
+            returningToBase
         }
         public workerBehavivor workerState;
         Thread workerThread;
@@ -30,6 +31,8 @@ namespace RTS_Games
         //Mouse Input
         MouseState previousMS = Mouse.GetState();
         MouseState newMS = Mouse.GetState();
+
+        //Go back to the guild to deliver
         Vector2 goToThisNewPosition = new Vector2(955, 540);
 
         //Activated
@@ -37,9 +40,9 @@ namespace RTS_Games
         bool isAlive = true;
 
         //Mine Resources
-        static decimal balance = 1000;
-        public int maxInventory = 50;
-        public int currentInventory;
+        public decimal balance = 1000;
+        public int maxInventory = 100;
+        public int currentInventory = 0;
         static Object thisLock = new Object();
 
         public Workers(string worker, Vector2 position, float layer)
@@ -68,8 +71,13 @@ namespace RTS_Games
 
                     case workerBehavivor.mining:
                         //Mining
-                        //Buildings.Mine.WaitingInLine();
+                        MiningsWithdraw(10);
+
                         break;
+                    case workerBehavivor.returningToBase:
+                        position = new Vector2(955, 540);
+                        break;
+                    
                     default:
                         Console.WriteLine("Default in the switch statement");
                         break;
@@ -158,8 +166,9 @@ namespace RTS_Games
         {
             if (other is Guild)
             {
-
-                Console.WriteLine("I used to be an adventurer like you, but then I took an arrow to the knee");
+                currentInventory = 0;
+                Console.WriteLine("Setting the inventory to zero");
+                //Console.WriteLine("I used to be an adventurer like you, but then I took an arrow to the knee");
             }
 
             if (other is Buildings.Mine)
@@ -167,8 +176,11 @@ namespace RTS_Games
                 if (workerState != workerBehavivor.mining)
                 {
                     workerState = workerBehavivor.mining;
-                    MiningsWithdraw(10);
-                    //Console.WriteLine("Worker State changed to mining");
+                    //MiningsWithdraw(10);
+                    
+                    //Console.WriteLine($"The current inventory is : {0}", currentInventory);
+                    
+                    //Console.WriteLine(balance);
                 }
                 //Console.WriteLine("Diglet dig diglet dig, Dugtrio trio trio");
             }
@@ -196,24 +208,37 @@ namespace RTS_Games
                     while (currentInventory < maxInventory)
                     {
                         currentInventory += amount;
+
                         Thread.Sleep(500);
-                        if (currentInventory > maxInventory)
-                        {
-                            currentInventory = maxInventory;
-                        }
+                        //currentInventory++;
+                            Console.WriteLine("Current inventory: " + currentInventory);
+
+                        //if (currentInventory > maxInventory)
+                        //{
+                        //    Console.WriteLine(currentInventory);
+                        //    currentInventory = maxInventory;
+                        //    //Move(goToThisNewPosition);
+                        //}
                     }
 
                 }
                 else
                 {
-                    balance -= amount;
-                    Console.WriteLine(balance);
+                    balance -= currentInventory;
+                    Console.WriteLine("The Current Balance in the mine :",balance);
                 }
             }
             finally
             {
+                Console.WriteLine($"The current inventory is : {0}", currentInventory);
 
                 Monitor.Exit(thisLock);
+                Console.WriteLine("Going home to kill my self");
+                if (currentInventory == maxInventory)
+                {
+                    Console.WriteLine("Moving home");
+                    Move(goToThisNewPosition);
+                }
 
             }
 
