@@ -58,33 +58,29 @@ namespace RTS_Games
         {
 			// TODO: Add your initialization logic here
 			gameObjects = new List<GameObject>();
-			myPosition = new Vector2(960, 540);
+			//myPosition = new Vector2(960, 540);
             this.IsMouseVisible = true;
 
-			//
-			Buildings guild = new Buildings("medievalCastle", new Vector2(800, 402), 0.05f);
+			//Tilføjer voees Bygninger til GameWorld med navn til filen, position og lager dybde
+			Guild guild = new Guild("medievalCastle", new Vector2(800, 402), 0.05f);
 			gameObjects.Add(guild);
 
-			Buildings barn = new Buildings("medievalBarn", new Vector2(1177, 37), 0.05f);
+			Buildings.Farm barn = new Buildings.Farm("medievalBarn", new Vector2(1177, 37), 0.05f);
 			gameObjects.Add(barn);
 
-			Buildings mine = new Buildings("medievalHome_B", new Vector2(224, 88), 0.05f);
+			Buildings.Mine mine = new Buildings.Mine("medievalHome_B", new Vector2(224, 88), 0.05f);
 			gameObjects.Add(mine);
 
-			Buildings log = new Buildings("medievalLogStorage", new Vector2(480, 920), 0.05f);
+			Buildings.LogHouse log = new Buildings.LogHouse("medievalLogStorage", new Vector2(480, 920), 0.05f);
 			gameObjects.Add(log);
 
-
-
-			//Tilføjer vores workerunit med filens navn, position og laget dybde
-			myPosition = new Vector2(960, 540);
-			Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
+            //Tilføjer vores workerunit med filens navn, position og laget dybde
+            myPosition = new Vector2(960, 540);
+            //myPosition = new Vector2(224, 118);
+            Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
 			gameObjects.Add(worker);
 
 			//Tilføjer vores baggrund med filens navn, position og lager dybde
-			//Workers worker = new Workers("medievalUnit_F", myPosition, 0.12f);
-			//gameObjects.Add(worker);
-
 			Background background = new Background("World_Map", new Vector2(GameWorld.screenSize.X / 2, GameWorld.screenSize.Y / 2), 0.05f);
 			gameObjects.Add(background);
 
